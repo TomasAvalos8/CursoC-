@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,9 @@ namespace dominio
     {
         public int Id { get; set; }
         [DisplayName("Número")]
-        public int Numero { get; set; }
+        public int? Numero { get; set; }
+
+        [Required(ErrorMessage="El nombre es requerido")]
         public string Nombre { get; set; }
         [DisplayName("Descripción")]
         public string Descripcion { get; set; }

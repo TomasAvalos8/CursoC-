@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using dominio;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using negocio;
 
@@ -28,10 +29,14 @@ namespace pokedex_mvc.Controllers
         // POST: PokemonController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Pokemon pokemon)
         {
             try
             {
+                PokemonNegocio negocio = new PokemonNegocio();
+                pokemon.Tipo = new Elemento { Id = 1 };
+                pokemon.Debilidad = new Elemento { Id = 2 };
+                negocio.agregar(pokemon);
                 return RedirectToAction(nameof(Index));
             }
             catch
