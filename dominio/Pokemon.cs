@@ -16,6 +16,7 @@ namespace dominio
 
         [Required(ErrorMessage="El nombre es requerido")]
         public string Nombre { get; set; }
+        [Required(ErrorMessage ="La descripción es requerida")]
         [DisplayName("Descripción")]
         public string Descripcion { get; set; }
         public string UrlImagen { get; set; }

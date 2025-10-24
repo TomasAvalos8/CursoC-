@@ -9,10 +9,16 @@
 <p>
     <a class="btn btn-primary" asp-action="Create">Agregar Nuevo</a>
 </p>
+<p>
+    <form asp-action="Index" method="get"> 
+        <input value="@ViewBag.filtro" type="text" class="form-control" name="filtro" placeholder="Busqueda por nombre..."/>
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+</p>
 <table class="table">
     <thead>
         <tr>
-           @*  <th>
+            @*  <th>
                 @Html.DisplayNameFor(model => model.Id)
             </th> *@
             <th>
@@ -37,36 +43,37 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            @* <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @* <td>
                 @Html.DisplayFor(modelItem => item.Id)
             </td> *@
-            <td>
-                @Html.DisplayFor(modelItem => item.Numero)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            @* <td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                @* <td>
                 @Html.DisplayFor(modelItem => item.Descripcion)
             </td> *@
-            <td>
-                @* @Html.DisplayFor(modelItem => item.UrlImagen) *@
-                <img src="@item.UrlImagen" height="50"/>
-            </td>
-            <td>
-                @item.Tipo.Descripcion
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Activo)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+                <td>
+                    @* @Html.DisplayFor(modelItem => item.UrlImagen) *@
+                    <img src="@item.UrlImagen" height="50" />
+                </td>
+                <td>
+                    @item.Tipo.Descripcion
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary">Modificar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-success">Detalle</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
